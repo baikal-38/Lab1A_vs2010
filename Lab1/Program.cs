@@ -384,10 +384,10 @@ namespace MultiThread
                 thread[i] = new Thread(() => { returns[tmp] = ThreadTask999(tmp, 6); });
                 thread[i].Start();
             }
-            rez = returns[0];
             for (i = 0; i < kol_vo_potokov; i++)
             {
                 thread[i].Join();
+                if (i == 0) rez = returns[i];
                 if (returns[i] < rez) rez = returns[i];
             }
             sWatch.Stop();
